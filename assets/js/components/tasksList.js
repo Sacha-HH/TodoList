@@ -4,7 +4,7 @@ const tasksList = {
         tasksList.bindAllTasksEvents();
     },
 
-    bindAllTasksEvents: function () {
+    bindAllTasksEvents: function(){
 
         // On récupère dans un tableau tous les éléments du DOM correspondant aux tâches
         let tasksElementsList = document.querySelectorAll('.tasks .task');
