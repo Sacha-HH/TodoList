@@ -1,6 +1,6 @@
 const newTaskForm = {
     init: function(){
-        let elementForm = document.querySelector('.task--add');
+        const elementForm = document.querySelector('.task--add');
         elementForm.addEventListener('submit', newTaskForm.handleNewTaskFormSubmit);
     },
 
@@ -15,6 +15,5 @@ const newTaskForm = {
         templateElement.querySelector('.task__title-label').textContent = title;
         templateElement.querySelector('.task__category p').textContent = category;
         document.querySelector('.tasks').appendChild(templateElement);
-
     }
 }
