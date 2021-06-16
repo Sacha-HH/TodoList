@@ -11,6 +11,9 @@ const task = {
         taskTitleFieldElement.addEventListener('keydown', task.handleKeydown);
         taskTitleFieldElement.addEventListener('blur', task.handleValidateNewTask);
 
+        const buttonTaskValidate = taskElement.querySelector('.task__button--validate');
+        buttonTaskValidate.addEventListener('click', task.handleCompleteTask);
+
     },
 
     // Cette methode a pour objectif de masquer le p de la tache et afficher l'input
@@ -52,6 +55,13 @@ const task = {
 
         taskElement.classList.remove('task--edit');
 
+    },
+
+    handleCompleteTask: function(evt){
+        let buttonElement = evt.currentTarget;
+        let taskElement = buttonElement.closest('.task');
+        taskElement.classList.remove('task--todo');
+        taskElement.classList.add('task--complete');
     }
 
 }
