@@ -1,19 +1,62 @@
 const newTaskForm = {
-    init: function(){
-        const elementForm = document.querySelector('.task--add');
-        elementForm.addEventListener('submit', newTaskForm.handleNewTaskFormSubmit);
-    },
 
+
+    // initialisation du composant
+    init: function(){
+      newTaskForm.bindNewTaskFormEventListener();
+    },
+  
+    // ajout un  eventlistener liés au formulaire d'ajout d'une tâche
+    bindNewTaskFormEventListener: function(){
+      // on récupère le formulaire d'ajout d'un" tache (le form qui est dans un element de classe task--add)
+      const newTaskFormElement = document.querySelector('.task--add form');
+  
+      newTaskFormElement.addEventListener('submit', newTaskForm.handleNewTaskFormSubmit);
+    },
+  
     handleNewTaskFormSubmit: function(evt){
-        evt.preventDefault();
-        const templateElement = document.getElementById('empty-task').content.cloneNode(true);
-        const elementFormSubmit = evt.currentTarget;
-        const titleSubmit = elementFormSubmit.querySelector('input');
-        const title = titleSubmit.value;
-        const categorySubmit = elementFormSubmit.querySelector('select');
-        const category = categorySubmit.value;
-        templateElement.querySelector('.task__title-label').textContent = title;
-        templateElement.querySelector('.task__category p').textContent = category;
-        document.querySelector('.tasks').appendChild(templateElement);
-    }
-}
+      // on empeche la page de se recharger :
+      evt.preventDefault();
+      // recupération du form
+      const newTaskFormElement = evt.currentTarget;
+      // récupération de l'input
+      const taskTitleFieldElement = newTaskFormElement.querySelector('.task__title-field');
+      // récupération de la valeur de l'input
+      const newTaskTitle = taskTitleFieldElement.value;
+      //
+      // récupération de l'élément select
+      const categoryElement = newTaskFormElement.querySelector('.task__category select');
+      const newTaskCategoryName = categoryElement.value;
+      
+      // j'imagine une methode qui va nous permettre de créer une nouvelle tache
+      // cette methode va recevoir 2 arguments : le nom de la tache et le nom de la categorie
+      const newTaskElement = task.createTaskElement(newTaskTitle, newTaskCategoryName);
+      // j'imagine une methode dont le but sera de nous afficher la tache ( l'inserer dans la lsite des taches);
+      tasksList.insertTaskIntoTasksList(newTaskElement);
+  
+    },
+  
+  }
+
+//! ça fonctionnait mais pas assez découpé pour d'autres fonctionnalités, ex : bouton complete task
+// const newTaskForm = {
+//     init: function(){
+//         newTaskForm.bindNewTaskFormEventListener;
+//         const elementForm = document.querySelector('.task--add');
+//         elementForm.addEventListener('submit', newTaskForm.handleNewTaskFormSubmit);
+//     },
+
+
+//     handleNewTaskFormSubmit: function(evt){
+//         evt.preventDefault();
+//         const templateElement = document.getElementById('empty-task').content.cloneNode(true);
+//         const elementFormSubmit = evt.currentTarget;
+//         const titleSubmit = elementFormSubmit.querySelector('input');
+//         const title = titleSubmit.value;
+//         const categorySubmit = elementFormSubmit.querySelector('select');
+//         const category = categorySubmit.value;
+//         templateElement.querySelector('.task__title-label').textContent = title;
+//         templateElement.querySelector('.task__category p').textContent = category;
+//         document.querySelector('.tasks').appendChild(templateElement);
+//     }
+// }
