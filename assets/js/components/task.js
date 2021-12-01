@@ -50,9 +50,6 @@ const task = {
   
     handleKeyDown: function(evt){
       if(evt.key === 'Enter'){
-        // ATTENTION DELICAT
-        // ici je passe l'objet Event "evt" a la methode
-        // handleValidateNewTask pour que le mecanisme reste fonctionnel
         task.handleValidateNewTask(evt);
       }
     },
@@ -91,11 +88,6 @@ const task = {
       const newTaskElement = taskCloneElement.querySelector('.task');
       //const newTaskElement = taskCloneElement.firstElementChild;
       console.log(newTaskElement);
-      /*
-      le templateTaskElement.content donne accès à un fragment de document qui est une sorte de container "emballant" le contenu (le fragment de document est un morceau de document qui ne fait pas partie du DOM), donc on n'obtient pas directement l'élément task (le <div> avec la classe .task sur l'exemple)
-      et si on écrit : let newTaskElement = templateTaskElement.content.cloneNode(true); on retourne également un fragment de document
-      cette subtilité est importante car si l'on veut réellement accéder à l'élément tâche contenu dans le fragment (et modifier un de ses attribut, pour mettre à jour le nom de la catégorie en dataset par exemple), alors il faut faire une sélection supplémentaire sur le fragment que l'on vient de récupérer : newTaskElement.querySelector('.task').
-      */
       
       // ici j'imagine une methode qui nous permet de changer le titre d'une tache
       task.updateTaskTitle(newTaskElement, newTaskTitle);
